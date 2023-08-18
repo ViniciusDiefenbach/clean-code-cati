@@ -1,10 +1,11 @@
 import { Dimensions, StyleSheet } from 'react-native'
+import { backgroundColor2, fontColor2 } from '../../../config/app-colors'
 
 const { width } = Dimensions.get('window')
 
 export const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#0D8623',
+    backgroundColor: backgroundColor2,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -13,7 +14,7 @@ export const styles = StyleSheet.create({
   title: {
     fontSize: 26,
     fontWeight: 'bold',
-    color: '#fff'
+    color: fontColor2
   },
   image: {
     height: width * 0.4 * (516 / 1542),
