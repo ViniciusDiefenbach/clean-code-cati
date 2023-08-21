@@ -14,21 +14,21 @@ export const screenOptions = {
   tabBarActiveTintColor: fontColor2
 }
 
-export const guidesOptions = {
+export const guideStackOptions = {
   title: 'Manuais',
   tabBarIcon: ({ color, size }) => (
     <Feather name="book-open" size={size} color={color} />
   )
 }
 
-export const HomeOptions = {
+export const homeStackOptions = {
   title: 'Home',
   tabBarIcon: ({ color, size }) => (
     <Feather name="home" size={size} color={color} />
   )
 }
 
-export const calendarsOptions = {
+export const calendarOptions = {
   title: 'Manuais',
   tabBarIcon: ({ color, size }) => (
     <Feather name="calendar" size={size} color={color} />

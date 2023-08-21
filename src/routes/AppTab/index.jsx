@@ -1,10 +1,10 @@
 import React from 'react'
 import HomeStack from '../HomeStack'
-import Guides from '../../screens/Guides'
 import Calendars from '../../screens/Calendars'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
-import { calendarsOptions, guidesOptions, screenOptions, HomeOptions } from './options'
+import { calendarOptions, guideStackOptions, screenOptions, homeStackOptions } from './options'
+import GuideStack from '../GuideStack'
 
 const Tab = createBottomTabNavigator()
 
@@ -12,9 +12,9 @@ export default function AppTab () {
   return (
     <NavigationContainer>
       <Tab.Navigator initialRouteName='Home' screenOptions={screenOptions}>
-          <Tab.Screen name="Guides" component={Guides} options={guidesOptions} />
-          <Tab.Screen name='Home' component={HomeStack} options={HomeOptions} />
-          <Tab.Screen name="Calendars" component={Calendars} options={calendarsOptions} />
+          <Tab.Screen name="GuideStack" component={GuideStack} options={guideStackOptions} />
+          <Tab.Screen name='HomeStack' component={HomeStack} options={homeStackOptions} />
+          <Tab.Screen name="Calendars" component={Calendars} options={calendarOptions} />
       </Tab.Navigator>
     </NavigationContainer>
   )
