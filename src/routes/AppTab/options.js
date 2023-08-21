@@ -21,7 +21,7 @@ export const guidesOptions = {
   )
 }
 
-export const welcomeOptions = {
+export const HomeOptions = {
   title: 'Home',
   tabBarIcon: ({ color, size }) => (
     <Feather name="home" size={size} color={color} />
