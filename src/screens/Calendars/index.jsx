@@ -8,7 +8,7 @@ import { api } from '../../services/api'
 export default function Calendars () {
   const [data, setData] = React.useState([])
   const getData = async () => {
-    const data = (await api.get('/schedules')).data
+    const data = (await api.get('/schedules')).data // Trocar por Calendars futuramente
     setData(data)
   }
 
@@ -24,7 +24,7 @@ export default function Calendars () {
           )
         : (
             data.map((item) => (
-          <View key={item.id} style={styles.scheduleContainer}>
+          <View key={item.id} style={styles.calendar}>
             <Text>{item.title}</Text>
             <ScaledImage
               uri={`${apiServer.url}/schedules/${item.content}`}

@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: width * 0.06,
     gap: 12
   },
-  scheduleContainer: {
+  calendar: {
     gap: 6
   },
   image: {
