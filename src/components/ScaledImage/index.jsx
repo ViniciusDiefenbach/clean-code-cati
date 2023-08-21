@@ -1,7 +1,6 @@
 import { Dimensions, Image, Modal, TouchableWithoutFeedback, View } from 'react-native'
 import React from 'react'
 import Close from '../Close'
-import ReactNativeZoomableView from '@openspacelabs/react-native-zoomable-view/src/ReactNativeZoomableView'
 import { styles } from './styles'
 
 const { width } = Dimensions.get('window')
@@ -22,16 +21,7 @@ export default function ScaledImage ({
             <Close
               onPress={() => setModalVisible(false)}
             />
-
-            <ReactNativeZoomableView
-              maxZoom={1.5}
-              minZoom={0.5}
-              zoomStep={0.5}
-              initialZoom={1}
-              bindToBorders={true}
-              onZoomAfter={this.logOutZoomState}
-              style={styles.imageContainer}
-            >
+            <View style={styles.imageContainer}>
               <Image
                 source={{ uri }}
                 style={[
@@ -39,7 +29,7 @@ export default function ScaledImage ({
                   style
                 ]}
               />
-            </ReactNativeZoomableView>
+            </View>
           </View>
 
         </Modal>
