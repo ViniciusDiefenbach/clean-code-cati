@@ -3,6 +3,8 @@ import React from 'react'
 import { api } from '../../services/api'
 import { styles } from './styles'
 import Button from '../../components/Button'
+import Refs from '../../components/Refs'
+import Date from '../../components/Date'
 
 export default function GuideDetails ({ route, navigation }) {
   const id = route.params
@@ -30,9 +32,9 @@ export default function GuideDetails ({ route, navigation }) {
         <View>
           <Text style={styles.title}>{data.title}</Text>
           <Text style={styles.description}>{data.briefDescription}</Text>
-          {/* <DateRender createdAt={data.createdAt} style={styles.date} /> */}
+          <Date createdAt={data.createdAt} style={styles.date} />
           <Text style={styles.content}>{data.content}</Text>
-          {/* <ReferencesRender GuideReferences={data.GuideReferences} /> */}
+          <Refs refs={data.GuideReferences} />
           <Button
             style={styles.button}
             onPress={() => navigation.goBack()}
