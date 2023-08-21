@@ -27,6 +27,7 @@ export const HomeOptions = {
     <Feather name="home" size={size} color={color} />
   )
 }
+
 export const calendarsOptions = {
   title: 'Manuais',
   tabBarIcon: ({ color, size }) => (
