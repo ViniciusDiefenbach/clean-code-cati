@@ -1,0 +1,32 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model GuideIdentifier {
+  id           String         @id @default(cuid())
+  title        String         @db.VarChar(20)
+  description  String         @db.VarChar(20)
+  createdAt    DateTime       @default(now())
+  GuideDetails GuideDetails[]
+}
+
+model GuideDetails {
+  id                String          @id @default(cuid())
+  format            Format
+  content           String          @db.Text // This content will recive an text (if format == paragraph), uri (if format == external image, link) and a file name (if format == internal image)
+  createdAt         DateTime        @default(now())
+  GuideIdentifier   GuideIdentifier @relation(fields: [guideIdentifierId], references: [id])
+  guideIdentifierId String
+}
+
+enum Format {
+  PARAGRAPH
+  INTERNAL_IMAGE
+  EXTERNAL_IMAGE
+  LINK
+}
