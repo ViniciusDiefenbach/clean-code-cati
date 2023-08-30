@@ -1,8 +1,9 @@
 const { Router } = require("express");
-const guideRouter = Router();
+const guideRoutes = Router();
 const { prisma } = require("../services/prisma.service");
+const { paramIdSchema } = require("../schemas/shared/param-id.schema");
 
-guideRouter.get("/", async (_, res) => {
+guideRoutes.get("/", async (_, res) => {
   const guides = await prisma.guideIdentifier.findMany({
     select: {
       id: true,
@@ -13,8 +14,11 @@ guideRouter.get("/", async (_, res) => {
   res.json(guides);
 });
 
-guideRouter.get("/:id", async (req, res) => {
-  const { id } = req.params;
+guideRoutes.get("/:id", async (req, res) => {
+  const input = paramIdSchema.safeParse(req.params);
+  if (!input.success) {
+    return res.json({ error: input.error });
+  }
   const guides = await prisma.guideDetails.findUnique({
     select: {
       id: true,
@@ -23,12 +27,12 @@ guideRouter.get("/:id", async (req, res) => {
       createdAt: true,
     },
     where: {
-      id,
+      id: input.data,
     },
   });
   res.json(guides);
 });
 
 module.exports = {
-  guideRouter,
+  guideRoutes,
 };
