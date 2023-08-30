@@ -29,8 +29,6 @@ guideRouter.get("/:id", async (req, res) => {
   res.json(guides);
 });
 
-
-
 module.exports = {
   guideRouter,
 };
