@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon src/index.js"
+    "dev": "nodemon src/bootstrap.js"
   },
   "dependencies": {
     "@prisma/client": "^5.1.1",
