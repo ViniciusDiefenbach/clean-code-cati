@@ -7,26 +7,38 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model GuideIdentifier {
-  id           String         @id @default(uuid())
-  title        String         @db.VarChar(20)
-  description  String         @db.VarChar(20)
-  createdAt    DateTime       @default(now())
-  GuideDetails GuideDetails[]
+model GuideIdentifiers {
+  id            String         @id @default(uuid())
+  title         String         @db.VarChar(20)
+  description   String         @db.VarChar(20)
+  created_at    DateTime       @default(now())
+  guide_details GuideDetails[]
+
+  @@map("guide_identifiers")
 }
 
 model GuideDetails {
-  id                String          @id @default(uuid())
-  format            Format
-  content           String          @db.Text // This content will recive an text (if format == paragraph), uri (if format == external image, link) and a file name (if format == internal image)
-  createdAt         DateTime        @default(now())
-  GuideIdentifier   GuideIdentifier @relation(fields: [guideIdentifierId], references: [id])
-  guideIdentifierId String
+  id                  String           @id @default(uuid())
+  format              Format
+  content             String           @db.Text // This content will recive an text (if format == paragraph), uri (if format == external image, link) and a file name (if format == internal image)
+  created_at          DateTime         @default(now())
+  guide_identifier    GuideIdentifiers @relation(fields: [guide_identifier_id], references: [id])
+  guide_identifier_id String
+
+  @@map("guide_details")
+}
+
+model Calendars {
+  id         String   @id @default(uuid())
+  class      String   @db.VarChar(20)
+  uri        String   @db.Text()
+  created_at DateTime @default(now())
+
+  @@map("calendars")
 }
 
 enum Format {
   PARAGRAPH
-  INTERNAL_IMAGE
-  EXTERNAL_IMAGE
+  IMAGE
   LINK
 }
