@@ -1,5 +1,5 @@
-export const backgroundColor1 = '#fff'
-export const backgroundColor2 = '#0D8623'
-export const fontColor1 = '#000'
-export const fontColor2 = '#fff'
-export const fontColor3 = '#ccc'
+export const PRIMARY_BACKGROUND_COLOR = "#fff";
+export const SECONDARY_BACKGROUND_COLOR = "#0D8623";
+export const PRIMARY_FONT_COLOR = "#000";
+export const SECONDARY_FONT_COLOR = "#fff";
+export const TERTIARY_FONT_COLOR = "#ccc";
