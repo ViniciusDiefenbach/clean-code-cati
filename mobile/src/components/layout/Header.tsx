@@ -1,10 +1,10 @@
 import React from "react";
 import { View, Text, Image, Dimensions, StyleSheet } from "react-native";
-import { header } from "../../../config/app-images";
+import { HEADER } from "../../../constants/app-images";
 import {
   SECONDARY_BACKGROUND_COLOR,
   SECONDARY_FONT_COLOR,
-} from "../../../config/app-colors";
+} from "../../../constants/app-colors";
 
 const { width } = Dimensions.get("window");
 
@@ -12,7 +12,7 @@ export default function Header() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Projeto Cati</Text>
-      <Image source={header} style={styles.image} />
+      <Image source={HEADER} style={styles.image} />
     </View>
   );
 }

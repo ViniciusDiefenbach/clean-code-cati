@@ -1,7 +1,12 @@
 import React from "react";
 import { Text } from "react-native";
 
-export default function TextDate({ createdAt, style }) {
+type TextDataProps = {
+  createdAt: string;
+  style?: object;
+};
+
+export default function TextDate({ createdAt, style }: TextDataProps) {
   return (
     <Text style={[style]}>
       Criado em:{" "}

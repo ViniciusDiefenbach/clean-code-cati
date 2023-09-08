@@ -1,18 +1,30 @@
-import { ActivityIndicator, FlatList, Text, View } from "react-native";
-import { styles } from "./styles";
-import { api } from "../../services/api";
+import {
+  ActivityIndicator,
+  FlatList,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import React from "react";
-import Button from "../../components/Button";
+import Button from "../layout/Button";
+import { api } from "../../services/api";
+import {
+  PRIMARY_BACKGROUND_COLOR,
+  SECONDARY_FONT_COLOR,
+} from "../../../constants/app-colors";
 
-export default function Guides({ navigation }) {
+export default function Guide({ navigation }) {
   const [data, setData] = React.useState([]);
   const getGuides = async () => {
-    setData((await api.get("/guides")).data);
+    console.log("inicio");
+    setData((await api.get("/guide")).data);
+    console.log("fim");
   };
+  getGuides();
   React.useEffect(() => {
     setInterval(() => {
       getGuides();
-    }, 5 * 1000);
+    }, 10 * 1000);
   });
 
   return (
@@ -40,3 +52,21 @@ export default function Guides({ navigation }) {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: PRIMARY_BACKGROUND_COLOR,
+    flex: 1,
+  },
+  title: {
+    color: SECONDARY_FONT_COLOR,
+    fontSize: 24,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  description: {
+    color: SECONDARY_FONT_COLOR,
+    fontSize: 16,
+    textAlign: "center",
+  },
+});

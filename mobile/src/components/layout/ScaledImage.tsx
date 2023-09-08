@@ -12,7 +12,17 @@ import ReactNativeZoomableView from "@dudigital/react-native-zoomable-view/src/R
 
 const { width } = Dimensions.get("window");
 
-export default function ScaledImage({ uri, style, widthScale = 1 }) {
+type ScaledImageProps = {
+  uri: string;
+  style?: object;
+  widthScale?: number;
+};
+
+export default function ScaledImage({
+  uri,
+  style,
+  widthScale: providedScale = 1,
+}: ScaledImageProps) {
   const [proportion, setProportion] = React.useState(0);
   const [modalVisible, setModalVisible] = React.useState(false);
   Image.getSize(uri, (width, height) => setProportion(height / width));
@@ -34,13 +44,13 @@ export default function ScaledImage({ uri, style, widthScale = 1 }) {
           >
             <Image
               source={{ uri }}
-              style={[{ height: proportion * width }, style]}
+              style={[{ width: proportion * width * providedScale }, style]}
             />
           </ReactNativeZoomableView>
         </View>
       </Modal>
       <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
-        <Image source={{ uri }} style={[, style]} />
+        <Image source={{ uri }} style={style} />
       </TouchableWithoutFeedback>
     </View>
   );

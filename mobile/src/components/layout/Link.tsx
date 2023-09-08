@@ -1,7 +1,11 @@
 import React from "react";
 import { Text, Linking, StyleSheet } from "react-native";
 
-export default function Link({ uri }) {
+type LinkProps = {
+  uri: string;
+};
+
+export default function Link({ uri }: LinkProps) {
   const onPress = async () => await Linking.openURL(`${uri}`);
 
   return (

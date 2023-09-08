@@ -1,21 +1,21 @@
 import React from "react";
 import { Feather } from "@expo/vector-icons";
 import {
-  backgroundColor2,
-  fontColor2,
-  fontColor3,
-} from "../../../config/app-colors";
+  SECONDARY_BACKGROUND_COLOR,
+  SECONDARY_FONT_COLOR,
+  TERTIARY_FONT_COLOR,
+} from "../../../constants/app-colors";
 
 export const screenOptions = {
   headerShown: false,
   tabBarStyle: {
-    backgroundColor: backgroundColor2,
-    borderTopColor: backgroundColor2,
+    backgroundColor: SECONDARY_BACKGROUND_COLOR,
+    borderTopColor: SECONDARY_BACKGROUND_COLOR,
     paddingTop: 4,
     paddingBottom: 4,
   },
-  tabBarInactiveTintColor: fontColor3,
-  tabBarActiveTintColor: fontColor2,
+  tabBarInactiveTintColor: TERTIARY_FONT_COLOR,
+  tabBarActiveTintColor: SECONDARY_FONT_COLOR,
 };
 
 export const guideStackOptions = {
@@ -33,7 +33,7 @@ export const homeStackOptions = {
 };
 
 export const calendarOptions = {
-  title: "Manuais",
+  title: "Calendários",
   tabBarIcon: ({ color, size }) => (
     <Feather name="calendar" size={size} color={color} />
   ),

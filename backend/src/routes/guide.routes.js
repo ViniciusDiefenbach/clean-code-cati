@@ -19,18 +19,27 @@ guideRoutes.get("/:id", async (req, res) => {
   if (!input.success) {
     return res.json({ error: input.error });
   }
-  const { id: guideIdentifierId } = input.data;
-  const guides = await prisma.guideDetails.findMany({
+  const { id } = input.data;
+
+  const guides = await prisma.guideIdentifier.findUnique({
     select: {
       id: true,
-      format: true,
-      content: true,
+      title: true,
+      description: true,
       createdAt: true,
+      GuideDetails: {
+        select: {
+          id: true,
+          format: true,
+          content: true,
+        },
+      },
     },
     where: {
-      guideIdentifierId,
+      id,
     },
   });
+
   res.json(guides);
 });
 

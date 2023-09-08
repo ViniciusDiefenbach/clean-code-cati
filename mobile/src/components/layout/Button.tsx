@@ -1,8 +1,14 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
-import { SECONDARY_BACKGROUND_COLOR } from "../../../config/app-colors";
+import { SECONDARY_BACKGROUND_COLOR } from "../../../constants/app-colors";
 
-export default function Button({ children, style, onPress }) {
+type ButtonProps = {
+  children: any;
+  style?: any;
+  onPress: () => void;
+};
+
+export default function Button({ children, style, onPress }: ButtonProps) {
   return (
     <TouchableOpacity style={[styles.button, style]} onPress={onPress}>
       {children}

@@ -7,9 +7,9 @@ import {
   Dimensions,
   StyleSheet,
 } from "react-native";
-import ScaledImage from "../../layout/ScaledImage";
-import { api } from "../../../services/api";
-import { PRIMARY_BACKGROUND_COLOR } from "../../../../config/app-colors";
+import ScaledImage from "../layout/ScaledImage";
+import { api } from "../../services/api";
+import { PRIMARY_BACKGROUND_COLOR } from "../../../constants/app-colors";
 
 const { width } = Dimensions.get("window");
 

@@ -1,6 +1,6 @@
-import axios from 'axios'
-import { apiServer } from '../../config/api-server'
+import axios from "axios";
+import { API_SERVER } from "../../constants/api-server";
 
 export const api = axios.create({
-  baseURL: apiServer.url
-})
+  baseURL: API_SERVER.URL,
+});

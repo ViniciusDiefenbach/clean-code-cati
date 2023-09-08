@@ -1,1 +1,3 @@
-export const screenOptions = { headerShown: false }
+export const screenOptions = {
+  headerShown: false,
+};

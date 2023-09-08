@@ -1,13 +1,12 @@
-import { Text, ScrollView } from 'react-native'
-import React from 'react'
-import { styles } from './styles'
-import Button from '../../components/Button'
+import { Text, ScrollView, StyleSheet } from "react-native";
+import React from "react";
+import Button from "../layout/Button";
 
-export default function ReadMore ({ navigation }) {
+export default function ReadMore({ navigation }) {
   return (
-      <ScrollView
+    <ScrollView
       style={{
-        flex: 1
+        flex: 1,
       }}
       contentContainerStyle={styles.container}
     >
@@ -18,10 +17,10 @@ export default function ReadMore ({ navigation }) {
         mobile com vários manuais e informações importantes para as aulas.
       </Text>
       <Text style={styles.paragraph}>
-        O projeto foi desenvolvido por:{' '}
+        O projeto foi desenvolvido por:{" "}
         <Text style={styles.strong}>Vinícius Diefenbach</Text> e orientado pelo
-        por:{' '}
-        <Text style={styles.strong}>Diego Alessandro Pereira dos Santos</Text> e{' '}
+        por:{" "}
+        <Text style={styles.strong}>Diego Alessandro Pereira dos Santos</Text> e{" "}
         <Text style={styles.strong}>Cassiano da Silva Souza</Text>.
       </Text>
       <Text style={styles.subtitle}>Tecnologias</Text>
@@ -57,15 +56,44 @@ export default function ReadMore ({ navigation }) {
       <Text style={styles.subtitle}>Como contribuir</Text>
       <Text style={styles.paragraph}>
         Caso queira contribuir com o projeto, qualquer bug ou sugestão de
-        melhoria pode ser reportado para a equipe da{' '}
+        melhoria pode ser reportado para a equipe da{" "}
         <Text style={styles.strong}>COTIN</Text> (responsável pelo projeto).
       </Text>
-      <Button
-        style={{ marginTop: 32 }}
-        onPress={() => navigation.goBack()}
-      >
+      <Button style={{ marginTop: 32 }} onPress={() => navigation.goBack()}>
         <Text style={styles.buttonText}>Voltar</Text>
       </Button>
     </ScrollView>
-  )
+  );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    paddingHorizontal: 24,
+    paddingVertical: 32,
+  },
+  title: {
+    fontSize: 40,
+    fontWeight: "bold",
+    textAlign: "center",
+    marginBottom: 8,
+  },
+  subtitle: {
+    fontSize: 32,
+    textAlign: "center",
+    margin: 6,
+  },
+  paragraph: {
+    fontSize: 20,
+    textAlign: "center",
+  },
+  strong: {
+    fontSize: 20,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+});

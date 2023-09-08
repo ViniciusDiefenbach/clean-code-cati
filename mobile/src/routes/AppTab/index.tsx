@@ -1,6 +1,4 @@
 import React from "react";
-import HomeStack from "../HomeStack";
-import Calendars from "../../screens/Calendars";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import {
@@ -10,6 +8,8 @@ import {
   homeStackOptions,
 } from "./options";
 import GuideStack from "../GuideStack";
+import HomeStack from "../HomeStack";
+import Calendars from "../../components/screens/Calendar";
 
 const Tab = createBottomTabNavigator();
 
