@@ -44,13 +44,16 @@ export default function ScaledImage({
           >
             <Image
               source={{ uri }}
-              style={[{ width: proportion * width * providedScale }, style]}
+              style={[style, { height: proportion * width * providedScale }]}
             />
           </ReactNativeZoomableView>
         </View>
       </Modal>
       <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
-        <Image source={{ uri }} style={style} />
+        <Image
+          source={{ uri }}
+          style={[style, { height: proportion * width * providedScale }]}
+        />
       </TouchableWithoutFeedback>
     </View>
   );

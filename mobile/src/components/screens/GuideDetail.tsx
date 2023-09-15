@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import {
   PRIMARY_BACKGROUND_COLOR,
+  SECONDARY_BACKGROUND_COLOR,
   SECONDARY_FONT_COLOR,
 } from "../../../constants/app-colors";
 import { api } from "../../services/api";
@@ -16,13 +17,7 @@ import TextDate from "../layout/TextDate";
 import Button from "../layout/Button";
 import Details from "../layout/Details";
 
-const { width } = Dimensions.get("window");
-
-export type GuideDetails = {
-  id?: string;
-  format?: string;
-  content?: string;
-};
+const { height } = Dimensions.get("window");
 
 type GuideIdentifier = {
   id?: string;
@@ -32,41 +27,51 @@ type GuideIdentifier = {
   guide_details?: Array<GuideDetails>;
 };
 
+export type GuideDetails = {
+  id?: string;
+  format?: string;
+  content?: string;
+};
+
 export default function GuideDetail({ route, navigation }) {
   const id = route.params;
 
   const [data, setData] = React.useState<GuideIdentifier>({});
   const getData = async () => {
-    const data = (await api.get(`/guides/${id}`)).data;
-    setData(data);
+    const result = await api.get(`/guide/${id}`);
+    if (result.data != data) {
+      setData(result.data);
+    }
   };
 
   React.useEffect(() => {
-    setInterval(() => {
-      getData();
-      console.log(data);
-    }, 10 * 1000);
-  });
+    getData();
+  }, []);
 
   return (
-    <ScrollView
-      style={styles.container}
-      contentContainerStyle={styles.contentContainer}
-    >
+    <View style={styles.container}>
       {data.title === undefined ? (
-        <ActivityIndicator />
+        <ActivityIndicator
+          style={styles.activityIndicator}
+          color={SECONDARY_BACKGROUND_COLOR}
+          size={"large"}
+        />
       ) : (
-        <View>
-          <Text style={styles.title}>{data.title}</Text>
-          <Text style={styles.description}>{data.description}</Text>
-          <TextDate createdAt={data.created_at} style={styles.date} />
-          {data.guide_details ? <Details details={data.guide_details} /> : null}
-          <Button style={styles.button} onPress={() => navigation.goBack()}>
-            <Text style={styles.buttonText}>Voltar</Text>
-          </Button>
-        </View>
+        <ScrollView contentContainerStyle={styles.contentContainer}>
+          <View>
+            <Text style={styles.title}>{data.title}</Text>
+            <Text style={styles.description}>{data.description}</Text>
+            <TextDate createdAt={data.created_at} style={styles.date} />
+            {data.guide_details ? (
+              <Details details={data.guide_details} />
+            ) : null}
+            <Button style={styles.button} onPress={() => navigation.goBack()}>
+              <Text style={styles.buttonText}>Voltar</Text>
+            </Button>
+          </View>
+        </ScrollView>
       )}
-    </ScrollView>
+    </View>
   );
 }
 
@@ -76,8 +81,7 @@ const styles = StyleSheet.create({
     backgroundColor: PRIMARY_BACKGROUND_COLOR,
   },
   contentContainer: {
-    paddingVertical: 10,
-    padding: width * 0.06,
+    padding: 20,
   },
   title: {
     fontSize: 32,
@@ -102,5 +106,10 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
     textAlign: "center",
+  },
+  activityIndicator: {
+    flex: 1,
+    height,
+    justifyContent: "center",
   },
 });

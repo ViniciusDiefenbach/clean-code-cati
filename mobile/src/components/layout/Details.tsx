@@ -16,7 +16,10 @@ export default function Details({ details }: DetailsProps) {
           <View key={item.id} style={styles.container}>
             {item.format === "PARAGRAPH" ? <Text>{item.content}</Text> : null}
             {item.format === "IMAGE" ? (
-              <ScaledImage uri={item.content} style={styles.image} />
+              <>
+                <Text>{item.content}</Text>
+                <ScaledImage uri={item.content} style={styles.image} />
+              </>
             ) : null}
             {item.format === "LINK" ? <Link uri={item.content} /> : null}
           </View>
