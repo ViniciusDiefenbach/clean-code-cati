@@ -15,17 +15,14 @@ import {
 
 export default function Guide({ navigation }) {
   const [data, setData] = React.useState([]);
-  const getGuides = async () => {
-    console.log("inicio");
-    setData((await api.get("/guide")).data);
-    console.log("fim");
-  };
-  getGuides();
+
   React.useEffect(() => {
-    setInterval(() => {
-      getGuides();
-    }, 10 * 1000);
-  });
+    setInterval(async () => {
+      const result = await api.get("/guide");
+      setData(result.data);
+      console.log("teste");
+    }, 10000);
+  }, []);
 
   return (
     <View style={{ flex: 1 }}>
