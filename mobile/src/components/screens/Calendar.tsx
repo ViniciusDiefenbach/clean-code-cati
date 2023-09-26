@@ -9,14 +9,17 @@ import {
 } from "react-native";
 import ScaledImage from "../layout/ScaledImage";
 import { api } from "../../services/api";
-import { PRIMARY_BACKGROUND_COLOR } from "../../../constants/app-colors";
+import {
+  PRIMARY_BACKGROUND_COLOR,
+  SECONDARY_BACKGROUND_COLOR,
+} from "../../../constants/app-colors";
 
 const { width } = Dimensions.get("window");
 
 export default function Calendars() {
   const [data, setData] = React.useState([]);
   const getData = async () => {
-    const data = (await api.get("/calendars")).data;
+    const data = (await api.get("/calendar")).data;
     setData(data);
   };
 
@@ -30,7 +33,11 @@ export default function Calendars() {
       contentContainerStyle={styles.contentContainer}
     >
       {!data ? (
-        <ActivityIndicator />
+        <ActivityIndicator
+          style={styles.activityIndicator}
+          color={SECONDARY_BACKGROUND_COLOR}
+          size={"large"}
+        />
       ) : (
         data.map((item) => (
           <View key={item.id} style={styles.calendar}>
@@ -62,5 +69,9 @@ const styles = StyleSheet.create({
   },
   image: {
     backgroundColor: "black",
+  },
+  activityIndicator: {
+    flex: 1,
+    justifyContent: "center",
   },
 });

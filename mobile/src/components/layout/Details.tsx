@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import ScaledImage from "./ScaledImage";
 import Link from "./Link";
 import { GuideDetails } from "../screens/GuideDetail";
@@ -17,7 +17,6 @@ export default function Details({ details }: DetailsProps) {
             {item.format === "PARAGRAPH" ? <Text>{item.content}</Text> : null}
             {item.format === "IMAGE" ? (
               <>
-                <Text>{item.content}</Text>
                 <ScaledImage uri={item.content} style={styles.image} />
               </>
             ) : null}
